@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Book List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>My Book List</h1>
+    </header>
+    <main>
+        <section id="book-list"></section>
+        <button id="show-form-btn">Add Book</button>
+
+        <div id="add-book-form" style="display: none;">
+            <form id="book-form">
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title"><br><br>
+
+                <label for="author">Author:</label><br>
+                <input type="text" id="author" name="author"><br><br>
+
+                <label for="description">Description:</label><br>
+                <textarea id="description" name="description"></textarea><br><br>
+
+                <button type="submit">Submit</button>
+                <button type="button" id="cancel-form-btn">Cancel</button>
+            </form>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 300px;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #eee;
+            padding: 10px;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px;
+        }
+        .edit, .delete {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .edit {
+            color: #ffc107;
+        }
+        .delete {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Todo List</h2>
+        <input type="text" id="todoInput" placeholder="Add a new task">
+        <button onclick="addTodo()">Add</button>
+        <ul id="todoList"></ul>
+    </div>
+    <script>
+        function addTodo() {
+            let input = document.getElementById("todoInput");
+            let todoText = input.value.trim();
+            if (todoText === "") return;
+            
+            let li = document.createElement("li");
+            li.innerHTML = `<span>${todoText}</span>
+                            <button class="edit" onclick="editTodo(this)">✏️</button>
+                            <button class="delete" onclick="deleteTodo(this)">❌</button>`;
+            
+            document.getElementById("todoList").appendChild(li);
+            input.value = "";
+        }
+        
+        function editTodo(button) {
+            let li = button.parentElement;
+            let span = li.querySelector("span");
+            let input = document.createElement("input");
+            input.type = "text";
+            input.value = span.textContent;
+            li.replaceChild(input, span);
+            
+            input.addEventListener("blur", function() {
+                span.textContent = input.value.trim() || span.textContent;
+                li.replaceChild(span, input);
+            });
+            
+            input.focus();
+        }
+        
+        function deleteTodo(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
